@@ -19,7 +19,7 @@ def nanopb_proto_library(**kwargs):
         name = name,
         srcs = [name_pb],
         deps = [
-            "//:nanopb",
+            "@com_github_nanopb_nanopb//:nanopb",
         ],
         includes = [name_pb],
         visibility = visibility,
