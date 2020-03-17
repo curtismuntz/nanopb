@@ -46,13 +46,8 @@ load("@protobuf_py_deps//:requirements.bzl", protobuf_pip_install = "pip_install
 
 protobuf_pip_install()
 
-"""git_repository(
+git_repository(
     name = "com_github_nanopb_nanopb",
-    commit = "2b41aa7983b0b829d5533ad3b582c61ff5fcf89c",
+    commit = "766ee1cebf6e1500dd9bd94fc217abb554ef55e7",
     remote = "https://github.com/silvergasp/nanopb.git",
-)"""
-
-local_repository(
-    name = "com_github_nanopb_nanopb",
-    path = "../..",
 )
