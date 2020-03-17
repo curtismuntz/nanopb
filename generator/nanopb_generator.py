@@ -2049,7 +2049,7 @@ def main_plugin():
 
 if __name__ == '__main__':
     # Check if we are running as a plugin under protoc
-    if 'protoc-gen-' in sys.argv[0] or '--protoc-plugin' in sys.argv:
+    if 'protoc-gen-' in sys.argv[0] or '--protoc-plugin' in sys.argv or '_bazel_' in sys.argv[0]:
         main_plugin()
     else:
         main_cli()
