@@ -9,8 +9,17 @@ proto_library(
 )
 
 python_proto_library(
-    name = "nanopb_proto_py",
+    name = "proto_lib_python",
     transitive = True,
-    visibility = ["//visibility:public"],
     deps = [":nanopb_proto"],
+)
+
+py_library(
+    name = "nanopb_proto_py",
+    srcs = [
+        "__init__.py",
+        "_utils.py",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [":proto_lib_python"],
 )

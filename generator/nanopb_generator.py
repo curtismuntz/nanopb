@@ -59,9 +59,15 @@ except TypeError:
     ''' + '\n')
     raise
 except (ValueError, SystemError, ImportError):
-    # Probably invoked directly instead of via installed scripts.
-    import proto.nanopb_pb2 as nanopb_pb2
-    from proto._utils import invoke_protoc
+    try:
+        # Probably invoked directly instead of via installed scripts.
+        import proto.nanopb_pb2 as nanopb_pb2
+        from proto._utils import invoke_protoc
+    except ImportError:
+        # Invoked using bazel
+        import generator.proto.nanopb_pb2 as nanopb_pb2
+        from generator.proto._utils import invoke_protoc
+
 except:
     sys.stderr.write('''
          ********************************************************************
