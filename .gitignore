@@ -29,3 +29,5 @@ generator/nanopb_pb2.pyc
 !generator-bin/**/*
 .vscode/**
 **/bazel-*/**
+bazel-*
+.clwb

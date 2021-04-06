@@ -1,14 +1,17 @@
-load("@build_stack_rules_proto//:plugin.bzl", "proto_plugin")
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "nanopb",
+    name = "nanopb_plugin",
+    #    exclusions = ["google/protobuf"],
     options = [
-        """-L'#include "%s"'""",
+        #        "generate_mock_code=true",
+        #        """-L'#include pb.h'""",
     ],
     outputs = [
-        "{basename}.pb.h",
-        "{basename}.pb.c",
+        "{protopath}.pb.h",
+        "{protopath}.pb.c",
     ],
+    protoc_plugin_name = "nanopb",
     tool = "//generator:nanopb_generator",
     visibility = ["//visibility:public"],
 )

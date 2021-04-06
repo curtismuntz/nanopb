@@ -2,8 +2,6 @@ package(default_visibility = ["//visibility:public"])
 
 licenses(["notice"])
 
-exports_files(["LICENSE.txt"])
-
 cc_library(
     name = "nanopb_cclib",
     srcs = [
@@ -17,7 +15,10 @@ cc_library(
         "pb_decode.h",
         "pb_encode.h",
     ],
-    # includes = ["."],
+    includes = [
+        ".",
+        "srcs",
+    ],
     strip_include_prefix = ".",
     visibility = ["//visibility:public"],
 )

@@ -1,5 +1,5 @@
 #ifndef EXAMPLE2
 #define EXAMPLE2
-#include "example1.pb.h"
+#include "examples/bazel_simple/simple.pb.h"
 
 #endif

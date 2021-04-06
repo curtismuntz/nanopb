@@ -1,4 +1,4 @@
-load("@build_stack_rules_proto//:compile.bzl", "proto_compile")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
 def nanopb_proto_compile(**kwargs):
     proto_compile(
