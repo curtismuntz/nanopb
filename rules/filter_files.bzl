@@ -1,8 +1,6 @@
 """Rule to filter files in the default output files by a file extension."""
 
 def _filter_files_impl(ctx):
-    for file in ctx.attr.target.files.to_list():
-        print(file)
     """Filter the files in DefaultInfo."""
     return [DefaultInfo(
         files = depset([

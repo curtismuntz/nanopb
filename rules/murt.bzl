@@ -61,7 +61,7 @@ _rule = rule(
 )
 
 # Create macro for converting attrs and passing to compile
-def example_compile(**kwargs):
+def nanopb_proto_library(**kwargs):
     name = kwargs.get("name")
     name_pb = name + "_pb"
     _rule(
@@ -73,9 +73,8 @@ def example_compile(**kwargs):
         }  # Forward args
     )
 
-    PDEPS = [
-        #        "//:nanopb_cclib",
-        #        "@com_google_protobuf//:protobuf",
+    PROTO_DEPS = [
+        "@com_github_nanopb_nanopb//srcs:nanopb_cclib",
     ]
 
     # Filter files to sources and headers
@@ -91,29 +90,21 @@ def example_compile(**kwargs):
         extensions = ["h"],
     )
 
-    print(PDEPS)
-
-    native.filegroup(
-        name = name + "_internal",
-        srcs = ["//srcs:nanopb_cclib"],
-    )
-
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
         hdrs = [name_pb + "_hdrs"],
-        #        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        deps = PDEPS + ["//srcs:nanopb_cclib"],
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb, name],
-        #        alwayslink = kwargs.get("alwayslink"),
-        #        copts = kwargs.get("copts"),
-        #        defines = kwargs.get("defines"),
-        #        include_prefix = kwargs.get("include_prefix"),
-        #        linkopts = kwargs.get("linkopts"),
-        #        linkstatic = kwargs.get("linkstatic"),
-        #        local_defines = kwargs.get("local_defines"),
-        #        nocopts = kwargs.get("nocopts"),
-        #        strip_include_prefix = kwargs.get("strip_include_prefix"),
+        alwayslink = kwargs.get("alwayslink"),
+        copts = kwargs.get("copts"),
+        defines = kwargs.get("defines"),
+        include_prefix = kwargs.get("include_prefix"),
+        linkopts = kwargs.get("linkopts"),
+        linkstatic = kwargs.get("linkstatic"),
+        local_defines = kwargs.get("local_defines"),
+        nocopts = kwargs.get("nocopts"),
+        strip_include_prefix = kwargs.get("strip_include_prefix"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
